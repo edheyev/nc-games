@@ -10,13 +10,39 @@ export const getCategories = () => {
   });
 };
 
-export const getReviews = (category_slug) => {
+export const getReviews = (
+  category_slug,
+  currentPage,
+  displayLimit,
+  sortBy,
+  sortDir
+) => {
   let path = `/reviews`;
+  let pathMod = `?`;
+
   if (category_slug) {
     //add to path
-    path += `?category=${category_slug}`;
+    path += `${pathMod}category=${category_slug}`;
+    pathMod = `&`;
   }
+  if (currentPage !== 0) {
+    path += `${pathMod}p=${currentPage}`;
+    pathMod = `&`;
+  }
+  if (displayLimit !== 10) {
+    path += `${pathMod}limit=${displayLimit}`;
+    pathMod = `&`;
+  }
+  if (sortBy !== "date") {
+    path += `${pathMod}sort_by=${sortBy}`;
+    pathMod = `&`;
+  }
+  if (sortDir === "DESC") {
+    path += `${pathMod}order=DESC`;
+    pathMod = `&`;
+  }
+  console.log(path);
   return gamesApi.get(path).then((res) => {
-    return res.data.reviews;
+    return res.data;
   });
 };

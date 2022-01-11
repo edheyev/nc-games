@@ -6,6 +6,9 @@ import AppName from "./Components/AppName";
 import ReviewsPage from "./pages/ReviewsPage";
 
 import styles from "./styles/App.module.css";
+import NewReview from "./pages/NewReview";
+import LoginPage from "./pages/LoginPage";
+import ReviewPage from "./pages/ReviewPage";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
         <Route path="/" element={<ReviewsPage />}></Route>
         <Route path="/reviews" element={<ReviewsPage />}></Route>
         <Route path="/categories/:category" element={<ReviewsPage />}></Route>
+        <Route path="/review/new" element={<NewReview />}></Route>
+        <Route path="/review/:review_id" element={<ReviewPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
         {/* <Route path="/review/:review_id" element={<ReviewsPage />}></Route> */}
         {/* <Route path="/users" element={<ReviewsPage />}></Route> */}
       </Routes>

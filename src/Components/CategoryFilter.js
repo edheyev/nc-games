@@ -5,6 +5,7 @@ const CategoryFilter = ({ categoryList }) => {
   return (
     <div>
       Category:
+      <Link to={`/reviews`}>All</Link>
       {categoryList.map((category) => {
         return (
           <Link to={`/categories/${category.slug}`} key={category.slug}>
