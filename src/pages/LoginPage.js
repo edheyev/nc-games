@@ -31,17 +31,18 @@ const LoginPage = () => {
     });
   };
 
-  const homeLink = (props) => {
-    return <Link to="/" {...props} />;
-  };
-
   return (
     <div>
       LOGIN PAGE
       <div>
         {!isLoggedIn && (
           <div>
-            <TextField id="userInput" label="Username" variant="standard" />
+            <TextField
+              id="userInput"
+              label="Username"
+              variant="standard"
+              value="tickle122"
+            />
             <Button variant="contained" onClick={handleLogin}>
               Login
             </Button>
@@ -51,9 +52,9 @@ const LoginPage = () => {
         {loginStatus === "logged" ? (
           <div>
             LOGIN success
-            <Button variant="contained" component={homeLink}>
-              Home
-            </Button>
+            <Link to="/">
+              <Button variant="contained">Home</Button>
+            </Link>
           </div>
         ) : (
           <></>

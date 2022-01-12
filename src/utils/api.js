@@ -58,3 +58,34 @@ export const getUsers = () => {
     return res.data.users;
   });
 };
+
+export const getComments = (review_id, currentPage, displayLimit) => {
+  let path = `/reviews/${review_id}/comments`;
+  let pathMod = `?`;
+  if (currentPage !== 0) {
+    path += `${pathMod}p=${currentPage}`;
+    pathMod = `&`;
+  }
+  if (displayLimit !== 10) {
+    path += `${pathMod}limit=${displayLimit}`;
+    pathMod = `&`;
+  }
+
+  return gamesApi.get(path).then((res) => {
+    return res.data.comments;
+  });
+};
+
+export const postComment = (review_id, comment) => {
+  return gamesApi
+    .post(`/reviews/${review_id}/comments`, comment)
+    .then((res) => {
+      return res;
+    });
+};
+
+export const deleteComment = (comment_id) => {
+  return gamesApi.delete(`/comments/${comment_id}`).then((res) => {
+    return res;
+  });
+};

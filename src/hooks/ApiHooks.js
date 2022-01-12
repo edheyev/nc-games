@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getReviews } from "../utils/api";
 export const useReviews = (
+  totalReviews,
+  setTotalReviews,
   category,
   currentPage,
   currentDisplayLimit,
@@ -8,7 +10,6 @@ export const useReviews = (
   sortDir
 ) => {
   const [reviewList, setReviewList] = useState([]);
-  const [totalReviews, setTotalReviews] = useState(0);
   useEffect(() => {
     getReviews(category, currentPage, currentDisplayLimit, sortQuery, sortDir)
       .then((reviewsFromApi) => {
@@ -20,5 +21,5 @@ export const useReviews = (
       });
   }, [category, currentPage, currentDisplayLimit, sortQuery, sortDir]);
 
-  return { reviewList, setReviewList, totalReviews, setTotalReviews };
+  return { reviewList, setReviewList };
 };

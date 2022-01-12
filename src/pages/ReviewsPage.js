@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import BasicPagination from "../Components/BasicPagination";
-import PagMenu from "../Components/PagMenu";
+// import BasicPagination from "../Components/BasicPagination";
+// import PagMenu from "../Components/PagMenu";
 import ReviewCard from "../Components/ReviewCard";
 // import ReviewCardContainer from "../Components/ReviewCardContainer";
 import styles from "../styles/ReviewsPage.module.css";
@@ -10,19 +10,36 @@ import FilterAndSearch from "../Components/FilterAndSearch";
 import { filterReviews } from "../utils/utils";
 import Button from "@material-ui/core/Button";
 import { useReviews } from "../hooks/ApiHooks";
+import { usePagination } from "../hooks/CustomHooks";
 
 const ReviewsPage = () => {
   const { category } = useParams();
   const [categoryList, setCategoryList] = useState([]);
   // const [reviewList, setReviewList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [currentDisplayLimit, setCurrentDisplayLimit] = useState(10);
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const [currentDisplayLimit, setCurrentDisplayLimit] = useState(10);
   const [sortQuery, setSortQuery] = useState("date");
   const [sortDir, setSortDir] = useState("ASC");
   const [searchTerm, setSearchTerm] = useState("");
+  const [totalReviews, setTotalReviews] = useState(0);
 
-  const { reviewList, setReviewList, totalReviews, setTotalReviews } =
-    useReviews(category, currentPage, currentDisplayLimit, sortQuery, sortDir);
+  const {
+    Pagination,
+    currentPage,
+    setCurrentPage,
+    currentDisplayLimit,
+    setCurrentDisplayLimit,
+  } = usePagination(totalReviews);
+
+  const { reviewList, setReviewList } = useReviews(
+    totalReviews,
+    setTotalReviews,
+    category,
+    currentPage,
+    currentDisplayLimit,
+    sortQuery,
+    sortDir
+  );
 
   useEffect(() => {
     getCategories()
@@ -39,11 +56,6 @@ const ReviewsPage = () => {
       filterReviews(reviewList, searchTerm, setReviewList);
     }
   }, [searchTerm, reviewList, setReviewList]);
-
-  //maybe move into pag component
-  const calcNumPages = () => {
-    return Math.ceil(totalReviews / currentDisplayLimit);
-  };
 
   return (
     <div>
@@ -67,16 +79,7 @@ const ReviewsPage = () => {
           return <ReviewCard review={review} key={i} />;
         })}
       </div>
-      <div>
-        <BasicPagination
-          setCurrentPage={setCurrentPage}
-          totalPages={calcNumPages()}
-        />
-        <PagMenu
-          setCurrentDisplayLimit={setCurrentDisplayLimit}
-          currentDisplayLimit={currentDisplayLimit}
-        />
-      </div>
+      {Pagination}
     </div>
   );
 };

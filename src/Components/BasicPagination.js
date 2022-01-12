@@ -3,10 +3,6 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
 const BasicPagination = ({ setCurrentPage, totalPages }) => {
-  //   useEffect(() => {
-  //     setCurrentPage(page);
-  //   }, [page]);
-
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
     console.log(value);
