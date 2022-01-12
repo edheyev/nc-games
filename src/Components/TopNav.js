@@ -9,8 +9,6 @@ const TopNav = () => {
       <div>
         <Link to="/">Reviews</Link>
         <Link to="/users">Users</Link>
-      </div>
-      <div>
         <LoginNav />
       </div>
     </div>

@@ -46,3 +46,15 @@ export const getReviews = (
     return res.data;
   });
 };
+
+export const getReview = (review_id) => {
+  return gamesApi.get(`/reviews/${review_id}`).then((res) => {
+    return res.data.reviews[0];
+  });
+};
+
+export const getUsers = () => {
+  return gamesApi.get("/users").then((res) => {
+    return res.data.users;
+  });
+};
