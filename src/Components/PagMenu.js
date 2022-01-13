@@ -16,12 +16,12 @@ function BasicMenu({ setCurrentDisplayLimit, currentDisplayLimit }) {
     <div>
       <Box sx={{ maxWidth: 65 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label"></InputLabel>
+          <InputLabel id="select-label"></InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={currentDisplayLimit}
-            label="displayLimit"
+            label="Items"
             onChange={handleChange}
           >
             <MenuItem value={10}>10</MenuItem>
@@ -30,7 +30,6 @@ function BasicMenu({ setCurrentDisplayLimit, currentDisplayLimit }) {
           </Select>
         </FormControl>
       </Box>
-      Reviews per page
     </div>
   );
 }

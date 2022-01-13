@@ -52,49 +52,64 @@ const FilterAndSearch = ({
   };
 
   return (
-    <div>
-      <ToggleButton value="check" selected={isOpen} onChange={toggleOpen}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        p: 1,
+        m: 1,
+      }}
+    >
+      <ToggleButton
+        sx={{ p: 1, m: 1 }}
+        value="check"
+        selected={isOpen}
+        onChange={toggleOpen}
+      >
         Advanced search
       </ToggleButton>
       {isOpen && (
-        <div>
+        <Box>
           <CategoryFilter categoryList={categoryList} />
-          <Box sx={{ maxWidth: 150 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Sort</InputLabel>
-              <Select
-                labelId="review-sort-by"
-                id="review-sort-by-select"
-                value={sortQuery}
-                label="sortQuery"
-                onChange={handleChangeSort}
-              >
-                {sortAr.map((option) => {
-                  return (
-                    <MenuItem key={option} value={option}>
-                      {option}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
+          <Box sx={{ display: "flex" }}>
+            <Box sx={{ maxWidth: 150, m: 1, p: 1 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+                <Select
+                  labelId="review-sort-by"
+                  id="review-sort-by-select"
+                  value={sortQuery}
+                  label="sortQuery"
+                  onChange={handleChangeSort}
+                >
+                  {sortAr.map((option) => {
+                    return (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Box>
+            <Box sx={{ maxWidth: 150, m: 1, p: 1 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Order</InputLabel>
+                <Select
+                  labelId="review-sort-by"
+                  id="review-sort-by-select"
+                  value={sortDir}
+                  label="sortDir"
+                  onChange={handleChangeDir}
+                >
+                  <MenuItem value={"ASC"}>Ascending</MenuItem>
+                  <MenuItem value={"DESC"}>Descending</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </Box>
-          <Box sx={{ maxWidth: 150 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Order</InputLabel>
-              <Select
-                labelId="review-sort-by"
-                id="review-sort-by-select"
-                value={sortDir}
-                label="sortDir"
-                onChange={handleChangeDir}
-              >
-                <MenuItem value={"ASC"}>Ascending</MenuItem>
-                <MenuItem value={"DESC"}>Descending</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </div>
+        </Box>
       )}
       <TextField
         id="standard-basic"
@@ -102,8 +117,9 @@ const FilterAndSearch = ({
         variant="standard"
         onChange={handleSearch}
         onKeyDown={keyPress}
+        sx={{ p: 1, m: 1 }}
       />
-    </div>
+    </Box>
   );
 };
 

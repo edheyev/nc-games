@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import BasicPagination from "../Components/BasicPagination";
 import PagMenu from "../Components/PagMenu";
@@ -11,7 +12,7 @@ export const usePagination = (totalReviews) => {
   };
 
   const Pagination = (
-    <div>
+    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <BasicPagination
         setCurrentPage={setCurrentPage}
         totalPages={calcNumPages()}
@@ -20,7 +21,7 @@ export const usePagination = (totalReviews) => {
         setCurrentDisplayLimit={setCurrentDisplayLimit}
         currentDisplayLimit={currentDisplayLimit}
       />
-    </div>
+    </Box>
   );
 
   return {
@@ -31,3 +32,5 @@ export const usePagination = (totalReviews) => {
     setCurrentDisplayLimit,
   };
 };
+
+export const useVote = () => {};

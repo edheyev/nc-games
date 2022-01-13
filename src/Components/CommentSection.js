@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { getComments, postComment } from "../utils/api";
 import CommentCard from "./CommentCard";
@@ -30,7 +30,7 @@ const CommentSection = ({ review_id, commentCount }) => {
 
   const handleNewComment = (event) => {
     let newComment = {
-      author: user.user,
+      author: isLoggedIn ? user.user : "Anonymous",
       body: document.getElementById("newComment").value,
     };
     setComments((comments) => {
@@ -52,18 +52,35 @@ const CommentSection = ({ review_id, commentCount }) => {
 
   return (
     <div>
-      COMMENT Section
       <div>
-        <div>
+        <Box sx={{ display: "flex", flexDirection: "column", p: 1, m: 1 }}>
           {isLoggedIn ? (
-            <TextField id="newComment">NEW COMMENT</TextField>
+            <Box>
+              <TextField sx={{ width: "85%" }} id="newComment">
+                NEW COMMENT
+              </TextField>
+              <Button variant="contained" onClick={handleNewComment}>
+                Post Comment
+              </Button>
+            </Box>
           ) : (
-            <Link to="/login">Login to comment</Link>
+            <Box sx={{ display: "flex", flexDirection: "column", p: 1, m: 1 }}>
+              <div>
+                <Link to="/login">Login to comment as user</Link>
+              </div>
+              <Box sx={{ display: "flex", flexDirection: "row", p: 1, m: 1 }}>
+                <TextField sx={{ width: "85%" }} id="newComment"></TextField>
+                <Button
+                  sx={{ height: "100%", marginLeft: 1 }}
+                  variant="contained"
+                  onClick={handleNewComment}
+                >
+                  Post Comment
+                </Button>
+              </Box>
+            </Box>
           )}
-          <Button variant="contained" onClick={handleNewComment}>
-            Comment
-          </Button>
-        </div>
+        </Box>
         {comments.map((comment, i) => {
           return (
             <CommentCard

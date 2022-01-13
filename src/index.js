@@ -4,12 +4,19 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./Contexts/UserContext";
+import { MuiThemeProvider } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+import { theme } from "./styles/MuiTheme.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

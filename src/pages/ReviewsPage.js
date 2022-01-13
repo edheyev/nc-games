@@ -11,6 +11,7 @@ import { filterReviews } from "../utils/utils";
 import Button from "@material-ui/core/Button";
 import { useReviews } from "../hooks/ApiHooks";
 import { usePagination } from "../hooks/CustomHooks";
+import { Box } from "@mui/material";
 
 const ReviewsPage = () => {
   const { category } = useParams();
@@ -70,15 +71,16 @@ const ReviewsPage = () => {
       />
 
       {category && <h1>{category}</h1>}
-
-      <div className={styles.review_container}>
+      <Box textAlign="center">
         <Link to="/review/new">
-          <Button variant="contained">Submit new review!</Button>
+          <Button float="centerm" variant="contained">
+            Submit new review!
+          </Button>
         </Link>
         {reviewList.map((review, i) => {
           return <ReviewCard review={review} key={i} />;
         })}
-      </div>
+      </Box>
       {Pagination}
     </div>
   );

@@ -9,13 +9,19 @@ import styles from "./styles/App.module.css";
 import NewReview from "./pages/NewReview";
 import LoginPage from "./pages/LoginPage";
 import ReviewPage from "./pages/ReviewPage";
+import UserPage from "./pages/UserPage";
 
 function App() {
   return (
     <BrowserRouter>
       <div className={styles.tempStyles}>
-        <TopNav />
-        <AppName />
+        <div>
+          <TopNav />
+        </div>
+        <div>
+          {/* {" "}
+          <AppName /> */}
+        </div>
       </div>
       <Routes>
         <Route path="/" element={<ReviewsPage />}></Route>
@@ -24,6 +30,7 @@ function App() {
         <Route path="/review/new" element={<NewReview />}></Route>
         <Route path="/review/:review_id" element={<ReviewPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/user/:username" element={<UserPage />}></Route>
         {/* <Route path="/review/:review_id" element={<ReviewsPage />}></Route> */}
         {/* <Route path="/users" element={<ReviewsPage />}></Route> */}
       </Routes>
