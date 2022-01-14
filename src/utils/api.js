@@ -95,3 +95,9 @@ export const getUser = (username) => {
     return res.data.user[0][0];
   });
 };
+
+export const patchVotes = (path, voteNum) => {
+  return gamesApi.patch(`${path}`, { inc_votes: voteNum }).then((res) => {
+    return res;
+  });
+};

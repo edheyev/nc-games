@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
 import { getUsers } from "../utils/api";
 import { userExists } from "../utils/utils";
@@ -32,35 +32,46 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      LOGIN PAGE
-      <div>
-        {!isLoggedIn && (
-          <div>
-            <TextField
-              id="userInput"
-              label="Username"
-              variant="standard"
-              value="tickle122"
-            />
-            <Button variant="contained" onClick={handleLogin}>
-              Login
-            </Button>
-          </div>
-        )}
-        {loginStatus === "error" ? <p>LOGIN ERROR</p> : <></>}
-        {loginStatus === "logged" ? (
-          <div>
-            LOGIN success
-            <Link to="/">
-              <Button variant="contained">Home</Button>
-            </Link>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-    </div>
+    <Box sx={{ p: 2, m: 2 }}>
+      <Paper
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          p: 1,
+          maxWidth: 500,
+          m: "auto",
+        }}
+      >
+        <Typography variant="h5">Log in</Typography>
+        <div>
+          {!isLoggedIn && (
+            <div>
+              <TextField
+                id="userInput"
+                label="Username"
+                variant="standard"
+                value="tickle122"
+              />
+              <Button variant="contained" onClick={handleLogin}>
+                Login
+              </Button>
+            </div>
+          )}
+          {loginStatus === "error" ? <p>LOGIN ERROR</p> : <></>}
+          {loginStatus === "logged" ? (
+            <div>
+              LOGIN success
+              <Link to="/">
+                <Button variant="contained">Home</Button>
+              </Link>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </Paper>
+    </Box>
   );
 };
 

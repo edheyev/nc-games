@@ -31,6 +31,7 @@ function App() {
         <Route path="/review/:review_id" element={<ReviewPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/user/:username" element={<UserPage />}></Route>
+        <Route path="/search/:searchStr" element={<ReviewsPage />}></Route>
         {/* <Route path="/review/:review_id" element={<ReviewsPage />}></Route> */}
         {/* <Route path="/users" element={<ReviewsPage />}></Route> */}
       </Routes>

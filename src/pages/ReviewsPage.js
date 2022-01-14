@@ -11,18 +11,15 @@ import { filterReviews } from "../utils/utils";
 import Button from "@material-ui/core/Button";
 import { useReviews } from "../hooks/ApiHooks";
 import { usePagination } from "../hooks/CustomHooks";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const ReviewsPage = () => {
   const { category } = useParams();
   const [categoryList, setCategoryList] = useState([]);
-  // const [reviewList, setReviewList] = useState([]);
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const [currentDisplayLimit, setCurrentDisplayLimit] = useState(10);
   const [sortQuery, setSortQuery] = useState("date");
   const [sortDir, setSortDir] = useState("ASC");
-  const [searchTerm, setSearchTerm] = useState("");
   const [totalReviews, setTotalReviews] = useState(0);
+  const { searchStr } = useParams();
 
   const {
     Pagination,
@@ -51,12 +48,12 @@ const ReviewsPage = () => {
   }, []);
 
   useEffect(() => {
-    if (searchTerm) {
-      console.log(searchTerm);
+    if (searchStr) {
+      console.log(searchStr);
       //TODO
-      filterReviews(reviewList, searchTerm, setReviewList);
+      // filterReviews(reviewList, searchStr, setReviewList);
     }
-  }, [searchTerm, reviewList, setReviewList]);
+  }, [searchStr, reviewList, setReviewList]);
 
   return (
     <div>
@@ -66,16 +63,18 @@ const ReviewsPage = () => {
         sortDir={sortDir}
         setSortDir={setSortDir}
         categoryList={categoryList}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
       />
 
       {category && <h1>{category}</h1>}
       <Box textAlign="center">
         <Link to="/review/new">
-          <Button float="centerm" variant="contained">
-            Submit new review!
-          </Button>
+          {searchStr ? (
+            <Typography variant="h3">{searchStr}</Typography>
+          ) : (
+            <Button float="centerm" variant="contained">
+              Submit new review!
+            </Button>
+          )}
         </Link>
         {reviewList.map((review, i) => {
           return <ReviewCard review={review} key={i} />;

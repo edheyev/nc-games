@@ -1,11 +1,17 @@
 import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useVote } from "../hooks/CustomHooks";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ReviewInfoCard = ({ review }) => {
   var dayjs = require("dayjs");
   const date = dayjs(review.created_at);
   const dateStr = `${date.$D + 1}/${date.$M + 1}/${date.$y}`;
+  const FavIcon = <FavoriteIcon />;
+
+  const { outIcon } = useVote(review.votes, FavIcon, `/reviews/${review.id}`);
+
   return (
     <div>
       <Paper
@@ -54,6 +60,7 @@ const ReviewInfoCard = ({ review }) => {
             </Box>
           </Box>
         </Box>
+        {outIcon}
       </Paper>
     </div>
   );

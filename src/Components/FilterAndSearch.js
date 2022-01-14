@@ -4,10 +4,10 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import CheckIcon from "@mui/icons-material/Check";
 import ToggleButton from "@mui/material/ToggleButton";
 import CategoryFilter from "./CategoryFilter";
 import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 
 const FilterAndSearch = ({
   sortQuery,
@@ -23,6 +23,7 @@ const FilterAndSearch = ({
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
+  const navigate = useNavigate();
 
   const sortAr = [
     "date",
@@ -44,10 +45,13 @@ const FilterAndSearch = ({
 
   const handleSearch = (event) => {
     // setSearchTerm(event.target.value);
+    if (event.target.value === "") {
+      return navigate(`/`);
+    }
   };
   const keyPress = (event) => {
     if (event.keyCode == 13) {
-      setSearchTerm(event.target.value);
+      return navigate(`/search/${event.target.value}`);
     }
   };
 

@@ -1,8 +1,10 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useVote } from "../hooks/CustomHooks";
 import styles from "../styles/CommentCard.module.css";
 import { deleteComment } from "../utils/api";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const CommentCard = ({ comment, myComment, setUpdateComments }) => {
   var dayjs = require("dayjs");
@@ -16,10 +18,17 @@ const CommentCard = ({ comment, myComment, setUpdateComments }) => {
         console.log(err);
       });
   };
+
+  const upIcon = <ThumbUpIcon />;
+  const { outIcon } = useVote(comment.votes, upIcon, `/comments/${comment.id}`);
+
   return (
     <Box sx={{ p: 1, m: 1 }}>
       <Paper sx={{ p: 1 }}>
-        <div>{comment.body}</div>
+        <Box sx={{ display: "flex", flexDirection: "row" }}>
+          {outIcon}
+          <div>{comment.body}</div>
+        </Box>
         <Box sx={{ m: 1, display: "flex", justifyContent: "space-between" }}>
           {comment.author === "Anonymous" ? (
             <Typography variant="body">Anonymous</Typography>
