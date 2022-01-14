@@ -4,11 +4,13 @@ import { getUsers } from "../utils/api";
 import { userExists } from "../utils/utils";
 import { UserContext } from "../Contexts/UserContext";
 import { Link } from "react-router-dom";
+import { useLoading } from "../hooks/CustomHooks";
 
 const LoginPage = () => {
   const [userList, setUserList] = useState([]);
-  const { setUser, isLoggedIn } = useContext(UserContext);
+  const { user, setUser, isLoggedIn } = useContext(UserContext);
   const [loginStatus, setLoginStatus] = useState("pre");
+  const { loadComponent, setIsLoading, setIsError } = useLoading();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -17,18 +19,25 @@ const LoginPage = () => {
   }, [isLoggedIn]);
 
   const handleLogin = () => {
-    getUsers().then((users) => {
-      let userName = document.getElementById("userInput").value;
-      setUserList(users);
-      if (userExists(userName, users)) {
-        //login succeeded
-        setUser({ user: userName });
-        setLoginStatus("logged");
-      } else {
-        //login Failed
-        setLoginStatus("error");
-      }
-    });
+    setIsLoading(true);
+
+    getUsers()
+      .then((users) => {
+        setIsLoading(false);
+        let userName = document.getElementById("userInput").value;
+        setUserList(users);
+        if (userExists(userName, users)) {
+          //login succeeded
+          setUser({ user: userName });
+          setLoginStatus("logged");
+        } else {
+          //login Failed
+          setLoginStatus("error");
+        }
+      })
+      .catch((err) => {
+        setIsError(true);
+      });
   };
 
   return (
@@ -58,10 +67,10 @@ const LoginPage = () => {
               </Button>
             </div>
           )}
-          {loginStatus === "error" ? <p>LOGIN ERROR</p> : <></>}
+          {loginStatus === "error" ? <p>Username not found</p> : <></>}
           {loginStatus === "logged" ? (
             <div>
-              LOGIN success
+              <Typography variant="h6">Welcome {user.user}!</Typography>
               <Link to="/">
                 <Button variant="contained">Home</Button>
               </Link>

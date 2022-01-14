@@ -4,13 +4,14 @@ import { getComments, postComment } from "../utils/api";
 import CommentCard from "./CommentCard";
 import { UserContext } from "../Contexts/UserContext";
 import { Link } from "react-router-dom";
-import { usePagination } from "../hooks/CustomHooks";
+import { useLoading, usePagination } from "../hooks/CustomHooks";
 
 const CommentSection = ({ review_id, commentCount }) => {
   const [comments, setComments] = useState([]);
   const { isLoggedIn, user } = useContext(UserContext);
   const [updateComments, setUpdateComments] = useState(0);
   const [totalComments, setTotalComments] = useState(commentCount);
+  const { loadComponent, setIsLoading, setIsError } = useLoading();
 
   const {
     Pagination,
@@ -21,11 +22,16 @@ const CommentSection = ({ review_id, commentCount }) => {
   } = usePagination(totalComments);
 
   useEffect(() => {
-    getComments(review_id, currentPage, currentDisplayLimit).then(
-      (commentFromApi) => {
+    setIsLoading(true);
+    getComments(review_id, currentPage, currentDisplayLimit)
+      .then((commentFromApi) => {
+        setIsLoading(false);
+
         setComments(commentFromApi);
-      }
-    );
+      })
+      .catch((err) => {
+        setIsError(true);
+      });
   }, [updateComments, review_id]);
 
   const handleNewComment = (event) => {
@@ -54,6 +60,7 @@ const CommentSection = ({ review_id, commentCount }) => {
     <div>
       <div>
         <Box sx={{ display: "flex", flexDirection: "column", p: 1, m: 1 }}>
+          {loadComponent}
           {isLoggedIn ? (
             <Box>
               <TextField sx={{ width: "85%" }} id="newComment">

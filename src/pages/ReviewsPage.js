@@ -10,7 +10,7 @@ import FilterAndSearch from "../Components/FilterAndSearch";
 import { filterReviews } from "../utils/utils";
 import Button from "@material-ui/core/Button";
 import { useReviews } from "../hooks/ApiHooks";
-import { usePagination } from "../hooks/CustomHooks";
+import { useLoading, usePagination } from "../hooks/CustomHooks";
 import { Box, Typography } from "@mui/material";
 
 const ReviewsPage = () => {
@@ -20,6 +20,7 @@ const ReviewsPage = () => {
   const [sortDir, setSortDir] = useState("ASC");
   const [totalReviews, setTotalReviews] = useState(0);
   const { searchStr } = useParams();
+  const { loadComponent, setIsLoading, setIsError } = useLoading();
 
   const {
     Pagination,
@@ -40,11 +41,16 @@ const ReviewsPage = () => {
   );
 
   useEffect(() => {
+    setIsLoading(true);
     getCategories()
       .then((catsFromApi) => {
+        setIsLoading(false);
         setCategoryList(catsFromApi);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+      });
   }, []);
 
   useEffect(() => {
@@ -67,6 +73,7 @@ const ReviewsPage = () => {
 
       {category && <h1>{category}</h1>}
       <Box textAlign="center">
+        {loadComponent}
         <Link to="/review/new">
           {searchStr ? (
             <Typography variant="h3">{searchStr}</Typography>

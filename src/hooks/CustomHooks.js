@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import BasicPagination from "../Components/BasicPagination";
 import PagMenu from "../Components/PagMenu";
 import { patchVotes } from "../utils/api";
+import CircularProgress from "@mui/material/CircularProgress";
+import ErrorIcon from "@mui/icons-material/Error";
 
 export const usePagination = (totalReviews) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -60,4 +62,23 @@ export const useVote = (initVotes, icon, apiPath) => {
   );
 
   return { outIcon };
+};
+export const useLoading = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    if (isError) {
+      isLoading = false;
+    }
+  }, [isError]);
+
+  const loadComponent = (
+    <Box sx={{ display: "flex" }}>
+      {isLoading && <CircularProgress />}
+      {isError && <ErrorIcon />}
+    </Box>
+  );
+
+  return { loadComponent, isLoading, setIsLoading, isError, setIsError };
 };
