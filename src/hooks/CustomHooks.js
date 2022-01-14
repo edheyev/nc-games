@@ -1,5 +1,5 @@
 import { Badge } from "@material-ui/core";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import BasicPagination from "../Components/BasicPagination";
 import PagMenu from "../Components/PagMenu";
@@ -69,14 +69,21 @@ export const useLoading = () => {
 
   useEffect(() => {
     if (isError) {
-      isLoading = false;
+      setIsLoading(false);
     }
   }, [isError]);
 
   const loadComponent = (
-    <Box sx={{ display: "flex" }}>
-      {isLoading && <CircularProgress />}
-      {isError && <ErrorIcon />}
+    <Box sx={{ display: "flex", textAlign: "center" }}>
+      <Box m="auto" p="2">
+        {isLoading && <CircularProgress />}
+        {isError && (
+          <div>
+            <ErrorIcon size="large" />
+            <Typography variant="h3">ERROR CONTACTING SERVER</Typography>
+          </div>
+        )}
+      </Box>
     </Box>
   );
 

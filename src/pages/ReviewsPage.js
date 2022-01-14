@@ -37,7 +37,9 @@ const ReviewsPage = () => {
     currentPage,
     currentDisplayLimit,
     sortQuery,
-    sortDir
+    sortDir,
+    setIsLoading,
+    setIsError
   );
 
   useEffect(() => {
@@ -78,9 +80,7 @@ const ReviewsPage = () => {
           {searchStr ? (
             <Typography variant="h3">{searchStr}</Typography>
           ) : (
-            <Button float="centerm" variant="contained">
-              Submit new review!
-            </Button>
+            <Button variant="contained">Submit new review!</Button>
           )}
         </Link>
         {reviewList.map((review, i) => {

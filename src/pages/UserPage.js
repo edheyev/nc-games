@@ -1,25 +1,31 @@
 import { Box, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useLoading } from "../hooks/CustomHooks";
 import { getUser } from "../utils/api";
 
 const UserPage = () => {
   const { username } = useParams();
   const [user, setUser] = useState({});
-  console.log(user);
+  const { loadComponent, setIsLoading, setIsError } = useLoading();
 
   useEffect(() => {
+    setIsLoading(true);
     getUser(username)
       .then((userFromApi) => {
+        setIsLoading(false);
         setUser(userFromApi);
       })
       .catch((err) => {
+        setIsError(true);
         console.log(err);
       });
   }, []);
 
   return (
     <div>
+      {loadComponent}
+
       <Paper
         sx={{
           background: "secondary",
