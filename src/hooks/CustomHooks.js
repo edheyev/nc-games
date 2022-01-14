@@ -63,6 +63,7 @@ export const useVote = (initVotes, icon, apiPath) => {
 
   return { outIcon };
 };
+
 export const useLoading = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);

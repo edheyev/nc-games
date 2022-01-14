@@ -75,7 +75,7 @@ const CommentSection = ({ review_id, commentCount }) => {
               <div>
                 <Link to="/login">Login to comment as user</Link>
               </div>
-              <Box sx={{ display: "flex", flexDirection: "row", p: 1, m: 1 }}>
+              {/* <Box sx={{ display: "flex", flexDirection: "row", p: 1, m: 1 }}>
                 <TextField sx={{ width: "85%" }} id="newComment"></TextField>
                 <Button
                   sx={{ height: "100%", marginLeft: 1 }}
@@ -84,7 +84,7 @@ const CommentSection = ({ review_id, commentCount }) => {
                 >
                   Post Comment
                 </Button>
-              </Box>
+              </Box> */}
             </Box>
           )}
         </Box>

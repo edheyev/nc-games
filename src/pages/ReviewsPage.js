@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-// import BasicPagination from "../Components/BasicPagination";
-// import PagMenu from "../Components/PagMenu";
 import ReviewCard from "../Components/ReviewCard";
-// import ReviewCardContainer from "../Components/ReviewCardContainer";
 import styles from "../styles/ReviewsPage.module.css";
 import { getCategories } from "../utils/api";
 import FilterAndSearch from "../Components/FilterAndSearch";
@@ -12,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import { useReviews } from "../hooks/ApiHooks";
 import { useLoading, usePagination } from "../hooks/CustomHooks";
 import { Box, Typography } from "@mui/material";
+import { UserContext } from "../Contexts/UserContext";
 
 const ReviewsPage = () => {
   const { category } = useParams();
@@ -21,6 +19,7 @@ const ReviewsPage = () => {
   const [totalReviews, setTotalReviews] = useState(0);
   const { searchStr } = useParams();
   const { loadComponent, setIsLoading, setIsError } = useLoading();
+  const { isLoggedIn, user } = useContext(UserContext);
 
   const {
     Pagination,
@@ -59,7 +58,7 @@ const ReviewsPage = () => {
     if (searchStr) {
       console.log(searchStr);
       //TODO
-      // filterReviews(reviewList, searchStr, setReviewList);
+      filterReviews(searchStr, setReviewList);
     }
   }, [searchStr, reviewList, setReviewList]);
 
@@ -76,11 +75,13 @@ const ReviewsPage = () => {
       {category && <h1>{category}</h1>}
       <Box textAlign="center">
         {loadComponent}
-        <Link to="/review/new">
+        <Link to={isLoggedIn ? "/review/new" : "/login"}>
           {searchStr ? (
             <Typography variant="h3">{searchStr}</Typography>
           ) : (
-            <Button variant="contained">Submit new review!</Button>
+            <Button variant="contained">
+              {isLoggedIn ? "Submit new review!" : "Log in to review!"}
+            </Button>
           )}
         </Link>
         {reviewList.map((review, i) => {

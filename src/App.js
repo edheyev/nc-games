@@ -11,16 +11,21 @@ import LoginPage from "./pages/LoginPage";
 import ReviewPage from "./pages/ReviewPage";
 import UserPage from "./pages/UserPage";
 
+/*
+TO DO
+- make post review look nice
+- get local storage to work with user
+- do themes and dark mode
+- do comment sorting
+- host site 
+*/
+
 function App() {
   return (
     <BrowserRouter>
       <div className={styles.tempStyles}>
         <div>
           <TopNav />
-        </div>
-        <div>
-          {/* {" "}
-          <AppName /> */}
         </div>
       </div>
       <Routes>
@@ -31,7 +36,7 @@ function App() {
         <Route path="/review/:review_id" element={<ReviewPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/user/:username" element={<UserPage />}></Route>
-        <Route path="/search/:searchStr" element={<ReviewsPage />}></Route>
+        {/* <Route path="/search/:searchStr" element={<ReviewsPage />}></Route> */}
         {/* <Route path="/review/:review_id" element={<ReviewsPage />}></Route> */}
         {/* <Route path="/users" element={<ReviewsPage />}></Route> */}
       </Routes>

@@ -16,7 +16,7 @@ const ReviewCard = ({ review }) => {
   const url = `/review/${review.review_id}`;
 
   return (
-    <Card sx={{ maxHeight: 300, p: 1, m: 1 }}>
+    <Card sx={{ maxHeight: 300, p: 1, m: 3 }}>
       <Badge sx={{ float: "right" }} badgeContent={review.votes}>
         <FavoriteIcon />
       </Badge>

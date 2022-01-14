@@ -20,7 +20,11 @@ const CommentCard = ({ comment, myComment, setUpdateComments }) => {
   };
 
   const upIcon = <ThumbUpIcon />;
-  const { outIcon } = useVote(comment.votes, upIcon, `/comments/${comment.id}`);
+  const { outIcon } = useVote(
+    comment.votes,
+    upIcon,
+    `/comments/${comment.comment_id}`
+  );
 
   return (
     <Box sx={{ p: 1, m: 1 }}>
@@ -35,9 +39,8 @@ const CommentCard = ({ comment, myComment, setUpdateComments }) => {
           ) : (
             <Link to={`/user/${comment.author}`}>{comment.author}</Link>
           )}
-          {dateStr}
-          {comment.votes}
           {myComment && <Button onClick={handleDeleteComment}>DELETE</Button>}
+          {dateStr}
         </Box>
       </Paper>
     </Box>

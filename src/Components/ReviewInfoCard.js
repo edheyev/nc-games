@@ -9,8 +9,11 @@ const ReviewInfoCard = ({ review }) => {
   const date = dayjs(review.created_at);
   const dateStr = `${date.$D + 1}/${date.$M + 1}/${date.$y}`;
   const FavIcon = <FavoriteIcon />;
-
-  const { outIcon } = useVote(review.votes, FavIcon, `/reviews/${review.id}`);
+  const { outIcon } = useVote(
+    review.votes,
+    FavIcon,
+    `/reviews/${review.review_id}`
+  );
 
   return (
     <div>

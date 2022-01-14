@@ -115,14 +115,6 @@ const FilterAndSearch = ({
           </Box>
         </Box>
       )}
-      <TextField
-        id="standard-basic"
-        label="Search reviews..."
-        variant="standard"
-        onChange={handleSearch}
-        onKeyDown={keyPress}
-        sx={{ p: 1, m: 1 }}
-      />
     </Box>
   );
 };

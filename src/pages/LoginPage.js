@@ -5,6 +5,7 @@ import { userExists } from "../utils/utils";
 import { UserContext } from "../Contexts/UserContext";
 import { Link } from "react-router-dom";
 import { useLoading } from "../hooks/CustomHooks";
+import { storageAvailable } from "../utils/utils";
 
 const LoginPage = () => {
   const [userList, setUserList] = useState([]);
@@ -29,6 +30,7 @@ const LoginPage = () => {
         if (userExists(userName, users)) {
           //login succeeded
           setUser({ user: userName });
+
           setLoginStatus("logged");
         } else {
           //login Failed

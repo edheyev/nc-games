@@ -10,7 +10,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const TopNav = () => {
   const theme = useTheme();
-  console.log(theme.palette.primary.main);
   return (
     <AppBar color="default" position="sticky">
       {/* <Link to="/">Home</Link> */}
