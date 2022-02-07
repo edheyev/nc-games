@@ -48,7 +48,6 @@ const CommentSection = ({ review_id, commentCount }) => {
       body: newComment.body,
     })
       .then((res) => {
-        console.log("posted and ,", res);
         setUpdateComments(1);
       })
       .catch((err) => {

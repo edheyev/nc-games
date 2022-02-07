@@ -56,7 +56,6 @@ const ReviewsPage = () => {
 
   useEffect(() => {
     if (searchStr) {
-      console.log(searchStr);
       //TODO
       filterReviews(searchStr, setReviewList);
     }

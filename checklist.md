@@ -113,8 +113,8 @@ TODO: No error handling as yet.
 - [x] Use object destructuring where possible
 - [x] Tidy? If not: ESLint / Prettier
 - [x] `node_modules` git ignored
-- [ ] No `console.log`s / comments
-- [ ] remove unnecessary files (e.g. App.test.js)
+- [x] No `console.log`s / comments
+- [x] remove unnecessary files (e.g. App.test.js)
 
 ---
 

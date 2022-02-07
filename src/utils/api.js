@@ -41,7 +41,6 @@ export const getReviews = (
     path += `${pathMod}order=DESC`;
     pathMod = `&`;
   }
-  console.log(path);
   return gamesApi.get(path).then((res) => {
     return res.data;
   });
@@ -77,7 +76,6 @@ export const getComments = (review_id, currentPage, displayLimit) => {
 };
 
 export const postComment = (review_id, comment) => {
-  console.log(comment);
   return gamesApi
     .post(`/reviews/${review_id}/comments`, comment)
     .then((res) => {
@@ -99,14 +97,12 @@ export const getUser = (username) => {
 
 export const patchVotes = (path, voteNum) => {
   return gamesApi.patch(`${path}`, { inc_votes: voteNum }).then((res) => {
-    console.log(res);
     return res;
   });
 };
 
 export const postReview = (review) => {
   return gamesApi.post("/reviews", review).then((res) => {
-    console.log(res);
     return res;
   });
 };
