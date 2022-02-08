@@ -82,7 +82,7 @@ const ReviewPage = () => {
           </Box>
         </>
       ) : (
-        <>Loading Error</>
+        <></>
       )}
     </div>
   );
