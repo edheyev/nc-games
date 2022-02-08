@@ -23,6 +23,7 @@ export const useReviews = (
       })
       .catch((err) => {
         setIsError(true);
+        console.log("getem");
         console.log(err.message);
       });
   }, [category, currentPage, currentDisplayLimit, sortQuery, sortDir]);

@@ -1,12 +1,17 @@
 import { getReviews } from "./api";
 
 export const filterReviews = (searchTerm, setReviews) => {
-  getReviews("", 1, 9999, "date", "ASC").then(({ reviews }) => {
-    const outReviews = reviews.filter((review) => {
-      return review.title.includes(searchTerm);
+  getReviews("", 1, 9999, "date", "ASC")
+    .then(({ reviews }) => {
+      const outReviews = reviews.filter((review) => {
+        return review.title.includes(searchTerm);
+      });
+      setReviews(outReviews);
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
     });
-    setReviews(outReviews);
-  });
 };
 
 export const userExists = (username, arr) => {

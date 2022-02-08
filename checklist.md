@@ -91,10 +91,10 @@ TODO: "New Review" placeholder page has been implemented, but not functional yet
 
 ## Error Handling
 
-- [ ] Bad url
-- [ ] Bad category slug in url
-- [ ] Bad review_id in url
-- [ ] Post comment: (No text in comment body / Can you post without logging in?)
+- [x] Bad url
+- [x] Bad category slug in url
+- [x] Bad review_id in url
+- [x] Post comment: (No text in comment body / Can you post without logging in?)
 
 ---
 

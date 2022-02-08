@@ -8,6 +8,8 @@ import { useLoading, usePagination } from "../hooks/CustomHooks";
 
 const CommentSection = ({ review_id, commentCount }) => {
   const [comments, setComments] = useState([]);
+  const [commentError, setCommentError] = useState(false);
+
   const { isLoggedIn, user } = useContext(UserContext);
   const [updateComments, setUpdateComments] = useState(0);
   const [totalComments, setTotalComments] = useState(commentCount);
@@ -35,24 +37,30 @@ const CommentSection = ({ review_id, commentCount }) => {
   }, [updateComments, review_id]);
 
   const handleNewComment = (event) => {
-    let newComment = {
-      author: isLoggedIn ? user.user : "Anonymous",
-      body: document.getElementById("newComment").value,
-    };
-    setComments((comments) => {
-      const newComments = [newComment, ...comments];
-      return newComments;
-    });
-    postComment(review_id, {
-      username: newComment.author,
-      body: newComment.body,
-    })
-      .then((res) => {
-        setUpdateComments(1);
-      })
-      .catch((err) => {
-        console.log(err);
+    const comment = document.getElementById("newComment").value;
+    if (comment.length > 0) {
+      setCommentError(false);
+      let newComment = {
+        author: isLoggedIn ? user.user : "Anonymous",
+        body: comment,
+      };
+      setComments((comments) => {
+        const newComments = [newComment, ...comments];
+        return newComments;
       });
+      postComment(review_id, {
+        username: newComment.author,
+        body: newComment.body,
+      })
+        .then((res) => {
+          setUpdateComments(1);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setCommentError(true);
+    }
   };
 
   return (
@@ -62,6 +70,7 @@ const CommentSection = ({ review_id, commentCount }) => {
           {loadComponent}
           {isLoggedIn ? (
             <Box>
+              {commentError && <div>No text in comment.</div>}
               <TextField sx={{ width: "85%" }} id="newComment">
                 NEW COMMENT
               </TextField>

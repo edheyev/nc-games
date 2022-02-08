@@ -77,9 +77,9 @@ const FilterAndSearch = ({
         <Box>
           <CategoryFilter categoryList={categoryList} />
           <Box sx={{ display: "flex" }}>
-            <Box sx={{ maxWidth: 150, m: 1, p: 1 }}>
+            <Box>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+                <InputLabel id="select-label">Sort</InputLabel>
                 <Select
                   labelId="review-sort-by"
                   id="review-sort-by-select"
@@ -97,7 +97,7 @@ const FilterAndSearch = ({
                 </Select>
               </FormControl>
             </Box>
-            <Box sx={{ maxWidth: 150, m: 1, p: 1 }}>
+            <Box>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Order</InputLabel>
                 <Select

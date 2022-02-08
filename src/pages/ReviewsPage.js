@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import ReviewCard from "../Components/ReviewCard";
 import styles from "../styles/ReviewsPage.module.css";
 import { getCategories } from "../utils/api";
@@ -20,7 +20,6 @@ const ReviewsPage = () => {
   const { searchStr } = useParams();
   const { loadComponent, setIsLoading, setIsError } = useLoading();
   const { isLoggedIn, user } = useContext(UserContext);
-
   const {
     Pagination,
     currentPage,
@@ -41,6 +40,7 @@ const ReviewsPage = () => {
     setIsError
   );
 
+  let navigate = useNavigate();
   useEffect(() => {
     setIsLoading(true);
     getCategories()
@@ -49,12 +49,14 @@ const ReviewsPage = () => {
         setCategoryList(catsFromApi);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("here", err);
         setIsError(true);
+        navigate("/error");
       });
   }, []);
 
   useEffect(() => {
+    console.log("filtering", category);
     if (searchStr) {
       //TODO
       filterReviews(searchStr, setReviewList);

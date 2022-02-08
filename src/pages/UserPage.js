@@ -31,33 +31,34 @@ const UserPage = () => {
           background: "secondary",
           p: 1,
           m: 3,
+          maxWidth: "75%",
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Paper
+          <Box
             sx={{
               p: 1,
               m: 3,
             }}
           >
             <h1>Username: {user.username}</h1>
-          </Paper>
-          <Paper
+          </Box>
+          <Box
             sx={{
               p: 1,
               m: 3,
             }}
           >
             <h2>Name: {user.name}</h2>
-          </Paper>
-          <Paper
+          </Box>
+          <Box
             sx={{
               p: 1,
               m: 3,
             }}
           >
-            <img src={user.avatar_url} width={"100%"} />
-          </Paper>
+            <img src={user.avatar_url} maxwidth={600} />
+          </Box>
         </Box>
       </Paper>
     </div>

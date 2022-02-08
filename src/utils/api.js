@@ -41,9 +41,15 @@ export const getReviews = (
     path += `${pathMod}order=DESC`;
     pathMod = `&`;
   }
-  return gamesApi.get(path).then((res) => {
-    return res.data;
-  });
+  return gamesApi
+    .get(path)
+    .then((res) => {
+      console.log(res);
+      return res.data;
+    })
+    .catch((err) => {
+      console.log("gotem", err);
+    });
 };
 
 export const getReview = (review_id) => {

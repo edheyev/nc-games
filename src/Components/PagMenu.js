@@ -14,7 +14,7 @@ function BasicMenu({ setCurrentDisplayLimit, currentDisplayLimit }) {
 
   return (
     <div>
-      <Box sx={{ maxWidth: 65 }}>
+      <Box>
         <FormControl fullWidth>
           <InputLabel id="select-label"></InputLabel>
           <Select

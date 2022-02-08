@@ -29,8 +29,8 @@ const ReviewInfoCard = ({ review }) => {
       >
         <img
           src={review.review_img_url}
-          width={"100%"}
-          height={150}
+          maxwidth={500}
+          height="100%"
           p={100}
           m={1}
         />
