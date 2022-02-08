@@ -14,9 +14,7 @@ const CommentCard = ({ comment, myComment, setUpdateComments }) => {
   const handleDeleteComment = () => {
     deleteComment(comment.comment_id)
       .then((res) => setUpdateComments(comment.comment_id))
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   const upIcon = <ThumbUpIcon />;

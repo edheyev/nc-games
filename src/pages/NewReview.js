@@ -31,7 +31,6 @@ const NewReview = () => {
         setCategoryList(catsFromApi);
       })
       .catch((err) => {
-        console.log(err);
         // setIsError(true);
       });
   }, []);
@@ -45,12 +44,8 @@ const NewReview = () => {
 
   const handleSubmitReview = () => {
     postReview(reviewOb)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => {})
+      .catch((err) => {});
   };
 
   return (

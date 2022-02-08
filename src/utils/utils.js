@@ -9,7 +9,6 @@ export const filterReviews = (searchTerm, setReviews) => {
       setReviews(outReviews);
     })
     .catch((err) => {
-      console.log(err);
       return err;
     });
 };

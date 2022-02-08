@@ -49,14 +49,12 @@ const ReviewsPage = () => {
         setCategoryList(catsFromApi);
       })
       .catch((err) => {
-        console.log("here", err);
         setIsError(true);
         navigate("/error");
       });
   }, []);
 
   useEffect(() => {
-    console.log("filtering", category);
     if (searchStr) {
       //TODO
       filterReviews(searchStr, setReviewList);

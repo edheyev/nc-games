@@ -48,9 +48,7 @@ export const useVote = (initVotes, icon, apiPath) => {
     setVotes((prev) => {
       return prev + 1;
     });
-    patchVotes(apiPath, 1).catch((err) => {
-      console.log(err);
-    });
+    patchVotes(apiPath, 1).catch((err) => {});
   };
 
   const outIcon = (

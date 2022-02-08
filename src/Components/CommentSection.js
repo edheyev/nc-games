@@ -55,9 +55,7 @@ const CommentSection = ({ review_id, commentCount }) => {
         .then((res) => {
           setUpdateComments(1);
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     } else {
       setCommentError(true);
     }

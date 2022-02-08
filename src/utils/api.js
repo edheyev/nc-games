@@ -44,12 +44,9 @@ export const getReviews = (
   return gamesApi
     .get(path)
     .then((res) => {
-      console.log(res);
       return res.data;
     })
-    .catch((err) => {
-      console.log("gotem", err);
-    });
+    .catch((err) => {});
 };
 
 export const getReview = (review_id) => {

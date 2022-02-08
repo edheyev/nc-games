@@ -18,7 +18,6 @@ const UserPage = () => {
       })
       .catch((err) => {
         setIsError(true);
-        console.log(err);
       });
   }, []);
 
